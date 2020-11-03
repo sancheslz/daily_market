@@ -1,0 +1,38 @@
+{
+    "estadao": {
+        "url": "http://economia.estadao.com.br/",
+        "user": "Estadão Economia",
+        "instagram": "estadao",
+        "twitter": "Estadao",
+        "title_path": "//section[1]/div/div[@class='text-wrapper'][1]/a/h3/text()",
+        "href_path": "//section[1]/div/div[@class='text-wrapper'][1]/a/@href",
+        "quote_path": "//section[1]/div/div[@class='text-wrapper'][1]/a/p/text()"
+    },
+    "infomoney": {
+        "url": "https: //www.infomoney.com.br",
+        "user": "Infomoney",
+        "instagram": "infomoney",
+        "twitter": "infomoney",
+        "title_path": "//div[@class='row m-0 image-scale-hover position-relative']/a/@title",
+        "href_path": "//div[@class='row m-0 image-scale-hover position-relative']/a/@href"
+    },
+    "elpais": {
+        "url": "https://brasil.elpais.com/seccion/economia",
+        "user": "ElPaís Brasil",
+        "instagram": "elpaisbrasil",
+        "twitter": "elpais_brasil",
+        "title_path": "//article/div/h2/a/text()",
+        "href_path": "//article/div/h2/a/@href",
+        "link_correction": "https: //brasil.elpais.com"
+    },
+    "bbcbrasil": {
+        "url": "https: //www.bbc.com/portuguese",
+        "user": "BBC Brasil",
+        "instagram": "bbcbrasil",
+        "twitter": "bbcbrasil",
+        "title_path": " //ul/li/div/div/h3/a/text()",
+        "href_path": " //ul/li/div/div/h3/a/@href",
+        "quote_path": " //ul/li/div/div/p/text()",
+        "link_correction": "https: //www.bbc.com"
+    }
+}
