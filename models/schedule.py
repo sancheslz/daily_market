@@ -1,16 +1,10 @@
 from . import Manager, Fields
 
 
-class News(Manager):
+class Schedule(Manager):
 
     def __init__(self, table_name=None):
         Manager.__init__(self, table_name)
-
-    title = Fields().charfield(
-        'title',
-        100,
-        not_null=True
-    )
 
     date = Fields().charfield(
         'date',
@@ -18,11 +12,11 @@ class News(Manager):
         not_null=True
     )
 
-    url = Fields().charfield(
-        'url',
-        200,
+    category = Fields().charfield(
+        'category',
+        3,
         not_null=True
     )
 
 
-db_news = News()
+db_schedule = Schedule()
