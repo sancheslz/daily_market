@@ -6,7 +6,7 @@ from time import sleep
 # Project Imports
 from spy import EconomicEvents, Market, Treasure, Newspaper
 from twitter import TwitterBot
-from images import TreasureImg, MarketImg
+from images import TreasureImg, MarketImg, EventsImg
 from models import db_news, db_schedule
 
 
@@ -85,6 +85,37 @@ def gen_market_img():
             db_schedule.insert(
                 datetime.today().strftime('%d/%m/%Y'),
                 'MKT',
+            )
+
+
+def get_events_img():
+    if len(db_schedule.get(
+        'date == "{}" AND category == "EE"'.format(
+            datetime.today().strftime('%d/%m/%Y')))) == 0:
+
+        status, events = EconomicEvents().events()
+        if status == 200:
+            image = EventsImg()
+            image.add_title(350, 'Eventos Econômicos')
+            img_status = image.render(events)
+
+            if img_status == 200:
+                tweet.send_media(
+                    './assets/events.png',
+                    'Confira os Eventos Econômicos de Hoje'
+                )
+
+            db_schedule.insert(
+                datetime.today().strftime('%d/%m/%Y'),
+                'EE',
+            )
+
+        elif status == 201:
+            tweet.send_text('Nenhum evento econômico previsto para hoje')
+
+            db_schedule.insert(
+                datetime.today().strftime('%d/%m/%Y'),
+                'EE',
             )
 
 

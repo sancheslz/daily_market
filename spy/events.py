@@ -64,5 +64,5 @@ class EconomicEvents(Requester):
         data = list(self._get_data('BRL'))
 
         if len(data) == 0:
-            return 'Sem eventos para hoje'
-        return data
+            return 201, 'Sem eventos para hoje'
+        return 200, data
