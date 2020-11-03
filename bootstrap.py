@@ -20,7 +20,7 @@ def get_news():
     for response in dataset.values():
         status, data = Newspaper(**response).news()
 
-        if status == 200 and len(db_news.get('url == "{}"'.format(
+        if status == 200 and len(db_news.get('url = "{}"'.format(
                 data.get('href')))) == 0:
 
             tweet.send_text('@{} - {} - Leia mais em: {}'.format(
@@ -145,3 +145,24 @@ if __name__ == "__main__":
     db_schedule.create()
     dataset = get_dataset()
     tweet = TwitterBot()
+
+    while True:
+
+        now = datetime.now()
+        year, month, day = now.year, now.month, now.day
+
+        if now > datetime(year, month, day, 8, 0) and now < datetime(year, month, day, 9, 0):
+            get_events_img()
+
+        elif now > datetime(year, month, day, 9, 00) and now < datetime(year, month, day, 10, 0):
+            economics()
+
+        elif now > datetime(year, month, day, 10, 30) and now < datetime(year, month, day, 12, 30):
+            gen_treasure_img()
+
+        elif now > datetime(year, month, day, 18, 30) and now < datetime(year, month, day, 19, 30):
+            gen_market_img()
+
+        get_news()
+
+        sleep(60)
