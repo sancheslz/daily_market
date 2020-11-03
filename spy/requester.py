@@ -28,4 +28,4 @@ class Requester:
             tree = html.fromstring(webpage)
             return tree
         except:
-            print('Bad request')
+            return 500, 'Bad request'

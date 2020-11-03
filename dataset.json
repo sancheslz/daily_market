@@ -23,7 +23,7 @@
         "twitter": "elpais_brasil",
         "title_path": "//article/div/h2/a/text()",
         "href_path": "//article/div/h2/a/@href",
-        "link_correction": "https: //brasil.elpais.com"
+        "link_correction": "https://brasil.elpais.com"
     },
     "bbcbrasil": {
         "url": "https: //www.bbc.com/portuguese",
@@ -33,6 +33,6 @@
         "title_path": " //ul/li/div/div/h3/a/text()",
         "href_path": " //ul/li/div/div/h3/a/@href",
         "quote_path": " //ul/li/div/div/p/text()",
-        "link_correction": "https: //www.bbc.com"
+        "link_correction": "https://www.bbc.com"
     }
 }

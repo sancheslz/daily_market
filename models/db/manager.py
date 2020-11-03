@@ -104,7 +104,7 @@ class Manager():
         """ Get an specific record from table """
 
         message = 'SELECT {} FROM {} WHERE {}'.format(
-            ', '.join(field_list),
+            ', '.join(field_list) if len(field_list) != 0 else '*',
             self.table_name,
             condition
         )

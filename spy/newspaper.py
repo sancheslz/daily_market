@@ -38,6 +38,7 @@ class Newspaper(Requester):
         try:
             tree = self._request()
             data['source'] = self.user.upper()
+            data['twitter'] = self.twitter
             data['title'] = tree.xpath(self.title_path)[0]
             data['href'] = tree.xpath(self.href_path)[0]
             if self.link_correction:
@@ -45,7 +46,7 @@ class Newspaper(Requester):
             if self.quote_path:
                 data['quote'] = tree.xpath(self.quote_path)[0]
 
-            return data
+            return 200, data
 
         except:
-            print('Problem with news from {}'.format(self.user))
+            return 404, 'Problem with news from {}'.format(self.user)
