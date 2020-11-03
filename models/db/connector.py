@@ -11,7 +11,7 @@ class Connector:
         self.cnc = None
 
     def connect(self: object) -> None:
-        self.db_name = 'data.db'
+        self.db_name = '../data.db'
         self.cnc = sqlite3.connect(self.db_name)
         self.sql = self.cnc.cursor()
 

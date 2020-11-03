@@ -19,7 +19,7 @@ class Fields():
             ] if option != None
         ]
 
-    def set_id(self: object) -> self:
+    def set_id(self: object) -> object:
         """ Default structure for id """
 
         self.field_name = "id"
@@ -28,7 +28,7 @@ class Fields():
 
     def charfield(self: object, field_name: str, max_length: int = 60,
                   *, not_null: bool = False, unique: bool = None,
-                  default: bool = None) -> self:
+                  default: bool = None) -> object:
         """ Define a charfield structure """
 
         self.field_name = field_name
@@ -45,7 +45,7 @@ class Fields():
         return self
 
     def integer(self: object, field_name: str, *, not_null: bool = False,
-                unique: bool = None, default: bool = None) -> self:
+                unique: bool = None, default: bool = None) -> object:
         """ Define an integer structure """
 
         self.field_name = field_name
@@ -61,7 +61,7 @@ class Fields():
         return self
 
     def boolean(self: object, field_name: str, *, not_null: bool = False,
-                unique: bool = None, default: bool = None) -> self:
+                unique: bool = None, default: bool = None) -> object:
         """ Define a boolean structure """
 
         self.field_name = field_name
@@ -76,7 +76,7 @@ class Fields():
         return self
 
     def foreign_key(self: object, field_name: str,
-                    ref_table: object, ref_column: str) -> self:
+                    ref_table: object, ref_column: str) -> object:
         """ Define a foreign key structure """
 
         self.field_name = field_name
