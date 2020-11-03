@@ -1,4 +1,4 @@
-from requester import Requester
+from .requester import Requester
 
 
 class Newspaper(Requester):
