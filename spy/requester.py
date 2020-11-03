@@ -16,7 +16,7 @@ class Requester:
     def __init__(self: object, url: str) -> None:
         self.url = url
 
-    def _request(self: object, *, json=False: bool) -> dict:
+    def _request(self: object, *, json: bool = False) -> dict:
         """ Request the url page and if works return the HTML element """
         try:
             request = Request(self.url, headers=Requester.headers,)
