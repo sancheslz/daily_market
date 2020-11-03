@@ -7,7 +7,7 @@ from json import loads
 class Requester:
     """ Responsible to request pages from a url and return the page structure
     """
-    
+
     # Default Header used to request data
     headers = {
         'User-Agent': 'Mozilla/5.0'

@@ -3,6 +3,23 @@ from typing import List
 
 
 class EconomicEvents(Requester):
+    """ Get Economic Events of Day 
+
+    Usage Example:
+            events = EconomicEvents()
+            events.events()
+
+    Output Example:
+            [
+                {
+                    'hour': '10:00',
+                    'event': 'PMI Industrial Markit  (Out)',
+                    'current': '66,7',
+                    'project': '',
+                    'previous': '64,9'
+                }
+            ]
+    """
 
     paths = {
         'hour': '{0}[{1}]/td[1]/text()',
@@ -42,7 +59,7 @@ class EconomicEvents(Requester):
             print('Problem to get events')
 
     def events(self: object) -> [List[dict], str]:
-        """ Request day events if none, return a message """
+        """ Request day events, if none, return a message """
 
         data = list(self._get_data('BRL'))
 
