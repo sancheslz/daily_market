@@ -57,10 +57,10 @@ class Market(Requester):
             print('Problem loading {} data'.format(key))
 
     def gainers(self):
-        return list(self._get_market_data('markets_gainers'))
+        return 200, list(self._get_market_data('markets_gainers'))
 
     def losers(self):
-        return list(self._get_market_data('markets_losers'))
+        return 200, list(self._get_market_data('markets_losers'))
 
     def _get_economics(self: object) -> List[dict]:
         try:

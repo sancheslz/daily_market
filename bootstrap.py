@@ -6,7 +6,7 @@ from time import sleep
 # Project Imports
 from spy import EconomicEvents, Market, Treasure, Newspaper
 from twitter import TwitterBot
-from images import TreasureImg
+from images import TreasureImg, MarketImg
 from models import db_news, db_schedule
 
 
@@ -37,24 +37,55 @@ def get_news():
 
 
 def gen_treasure_img():
-    status, treasure = Treasure().buy()
-    if status == 200:
-        print('generating image...')
-        image = TreasureImg()
-        image.add_title(
-            100, 'Confira os preços e taxas de hoje no tesouro direto')
-        img_status = image.render(treasure)
+    if len(db_schedule.get(
+        'date == "{}" AND category == "TD"'.format(
+            datetime.today().strftime('%d/%m/%Y')))) == 0:
 
-    if img_status == 200 and len(db_schedule.get('date == "{}"'.format(datetime.today().strftime('%d/%m/%Y')))) == 0:
-        tweet.send_media(
-            './assets/treasure.png',
-            'Confira as taxas do Tesouro Direto'
-        )
+        status, treasure = Treasure().buy()
+        if status == 200:
+            image = TreasureImg()
+            image.add_title(
+                100, 'Confira os preços e taxas de hoje no tesouro direto')
+            img_status = image.render(treasure)
 
-        db_schedule.insert(
-            datetime.today().strftime('%d/%m/%Y'),
-            'TD',
-        )
+        if img_status == 200:
+            tweet.send_media(
+                './assets/treasure.png',
+                'Confira as taxas do Tesouro Direto'
+            )
+
+            db_schedule.insert(
+                datetime.today().strftime('%d/%m/%Y'),
+                'TD',
+            )
+
+
+def gen_market_img():
+    if len(db_schedule.get(
+        'date == "{}" AND category == "MKT"'.format(
+            datetime.today().strftime('%d/%m/%Y')))) == 0:
+
+        gainers_status, gainers_data = Market().gainers()
+        losers_status, losers_data = Market().losers()
+
+        if gainers_status == 200 and losers_status == 200:
+            img = MarketImg()
+            img.add_title(330, 'Fechamento do Mercado')
+            img_status = img.render({
+                'gainers': gainers_data,
+                'losers': losers_data
+            })
+
+        if img_status == 200:
+            tweet.send_media(
+                './assets/market.png',
+                'Confira o Fechamento do Mercado'
+            )
+
+            db_schedule.insert(
+                datetime.today().strftime('%d/%m/%Y'),
+                'MKT',
+            )
 
 
 if __name__ == "__main__":
