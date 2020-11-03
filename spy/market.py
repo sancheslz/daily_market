@@ -78,4 +78,4 @@ class Market(Requester):
             return 'Erro ao carregar os indicadores econômicos'
 
     def economics(self: object) -> List[dict]:
-        return list(self._get_economics())
+        return 200, list(self._get_economics())

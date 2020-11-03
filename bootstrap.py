@@ -119,9 +119,28 @@ def get_events_img():
             )
 
 
+def economics():
+    if len(db_schedule.get(
+        'date == "{}" AND category == "ED"'.format(
+            datetime.today().strftime('%d/%m/%Y')))) == 0:
+
+        status, economics = Market().economics()
+        if status == 200:
+            tweet.send_text(
+                'Confira os Indicadores do Mercado\n'+'\n'.join([
+                    f"{item.get('item')} > {item.get('value')} ({item.get('percent')})"
+                    for item in economics]
+                ))
+
+        db_schedule.insert(
+            datetime.today().strftime('%d/%m/%Y'),
+            'ED',
+        )
+
+
 if __name__ == "__main__":
 
-    # Create databases if don't exist
+    # Create databases if it doesn't exist
     db_news.create()
     db_schedule.create()
     dataset = get_dataset()
