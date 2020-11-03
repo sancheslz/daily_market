@@ -6,6 +6,7 @@ from time import sleep
 # Project Imports
 from spy import EconomicEvents, Market, Treasure, Newspaper
 from twitter import TwitterBot
+from images import TreasureImg
 from models import db_news, db_schedule
 
 
@@ -33,6 +34,27 @@ def get_news():
                 datetime.today().strftime('%d/%m/%Y'),
                 data.get('href'),
             )
+
+
+def gen_treasure_img():
+    status, treasure = Treasure().buy()
+    if status == 200:
+        print('generating image...')
+        image = TreasureImg()
+        image.add_title(
+            100, 'Confira os preços e taxas de hoje no tesouro direto')
+        img_status = image.render(treasure)
+
+    if img_status == 200 and len(db_schedule.get('date == "{}"'.format(datetime.today().strftime('%d/%m/%Y')))) == 0:
+        tweet.send_media(
+            './assets/treasure.png',
+            'Confira as taxas do Tesouro Direto'
+        )
+
+        db_schedule.insert(
+            datetime.today().strftime('%d/%m/%Y'),
+            'TD',
+        )
 
 
 if __name__ == "__main__":

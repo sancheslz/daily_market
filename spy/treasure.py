@@ -38,7 +38,11 @@ class Treasure(Requester):
 
                 yield {
                     'title': data['nm'],
-                    'due': data['mtrtyDt'],
+                    'due': '{}/{}/{}'.format(
+                        data['mtrtyDt'][5:7],
+                        data['mtrtyDt'][8:10],
+                        data['mtrtyDt'][:4],
+                    ),
                     'unit': data['minInvstmtAmt'],
                     'price': data['untrInvstmtVal'],
                     'tax': data['anulInvstmtRate'],
@@ -46,4 +50,7 @@ class Treasure(Requester):
 
     def buy(self: object) -> List[dict]:
         """ Return buy offers """
-        return list(self._get_data())
+        try:
+            return 200, list(self._get_data())
+        except:
+            return 404, 'Erro ao obter dados do Tesouro Direto'
