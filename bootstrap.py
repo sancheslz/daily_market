@@ -11,12 +11,15 @@ from models import db_news, db_schedule
 
 
 def get_dataset():
+    """ Load newspaper structure from json file """
     with open('./dataset.json') as dataset:
         data = dataset.read()
         return json.loads(data)
 
 
 def get_news():
+    """ Get news from each newspaper and tweet it """
+
     for response in dataset.values():
         status, data = Newspaper(**response).news()
 
@@ -37,6 +40,8 @@ def get_news():
 
 
 def gen_treasure_img():
+    """ Get National Treasure values and Tweet its image """
+
     if len(db_schedule.get(
         'date == "{}" AND category == "TD"'.format(
             datetime.today().strftime('%d/%m/%Y')))) == 0:
@@ -61,6 +66,8 @@ def gen_treasure_img():
 
 
 def gen_market_img():
+    """ Get the stocks situation and post its image """
+
     if len(db_schedule.get(
         'date == "{}" AND category == "MKT"'.format(
             datetime.today().strftime('%d/%m/%Y')))) == 0:
@@ -89,6 +96,8 @@ def gen_market_img():
 
 
 def get_events_img():
+    """ Get all events of day and post its image """
+
     if len(db_schedule.get(
         'date == "{}" AND category == "EE"'.format(
             datetime.today().strftime('%d/%m/%Y')))) == 0:
@@ -120,6 +129,8 @@ def get_events_img():
 
 
 def economics():
+    """ Tweet the economic summary of indicators """
+
     if len(db_schedule.get(
         'date == "{}" AND category == "ED"'.format(
             datetime.today().strftime('%d/%m/%Y')))) == 0:

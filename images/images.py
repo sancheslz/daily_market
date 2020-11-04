@@ -14,11 +14,14 @@ class ImageGen:
         self.draw_board()
 
     def draw_board(self: object) -> None:
+        """ Draw the board with Tweeter Pattern """
+
         self.board = Image.new('RGBA', (1024, 512), color=(255, 255, 255))
         self.content = ImageDraw.Draw(self.board)
         self.content.rectangle([(22, 115), (1000, 107)], fill=(41, 51, 115))
 
-    def add_title(self: object, start: int, text: str) -> None:  # start == 100
+    def add_title(self: object, start: int, text: str) -> None:
+        """ Add title to board starting on a specific position """
         self.content.text(
             (start, 44),
             text.upper(),
@@ -27,4 +30,6 @@ class ImageGen:
         )
 
     def render(self: object, data: List[dict]) -> int:
+        """ Render the content passed and save the image 
+        Note: this method must be implement to each specific situation """
         pass
