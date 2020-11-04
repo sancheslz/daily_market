@@ -1,6 +1,6 @@
 # Daily Market
 
-A bot to tweet economic news and infos
+A bot to tweet economic news and information
 
 ![Badge](https://img.shields.io/static/v1?label=language&message=Python+3.8&color=3776AB&style=flat)
 ![Badge](https://img.shields.io/static/v1?label=posts&message=Twitter&color=1DA1F2&style=flat)
@@ -92,7 +92,7 @@ Tweepy 3.9
 python -m venv venv
 ```
 
-1. Active the virtual environment
+2. Active the virtual environment
 
 On Windows
 
@@ -106,7 +106,7 @@ On Linux/Mac:
 source venv/bin/activate
 ```
 
-1. Download the Project
+3. Download the Project
 
 ```bash
 git clone git@github.com:sancheslz/daily_market.git
@@ -120,13 +120,13 @@ git clone git@github.com:sancheslz/daily_market.git
 pip install -r requirements-dev
 ```
 
-1. Create the `.env` file on root path
+2. Create the `.env` file on root path
 
 ```bash
 touch .env
 ```
 
-1. Insert the your own secret keys in `.env` file
+3. Insert the your own secret keys in `.env` file
 
 ```bash
 twitter_consumer_key = "XXXXXXXXX"
@@ -137,7 +137,7 @@ twitter_access_token_secret = "XXXXXXXXX"
 
 **Note:** to know how to get your own personal keys, visit [Twitter](https://developer.twitter.com/en/docs/getting-started) website
 
-1. Run the script
+4. Run the script
 
 ```bash
 python bootstrap.py
